@@ -12,6 +12,9 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/* \
  && chmod +x /app/scripts/entrypoint.sh
 
+RUN mkdir -p /server
+WORKDIR /server
+VOLUME ["/server"]
 
 EXPOSE 25565
 
