@@ -1,0 +1,21 @@
+services:
+  mc-server:
+    container_name: mc-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mc-server:latest
+    environment:
+      XMS: ${XMS:-1g}
+      XMX: ${XMX:-2g}
+      EULA: ${EULA:-true}
+      ONLINE_MODE: ${ONLINE_MODE:-true}
+      JVM_OPTS: ${JVM_OPTS:-}
+    ports:
+      - "8888:25565"   # extern 8888, intern 25565
+    volumes:
+      - ./mc-data:/server
+    restart: unless-stopped
+
+volumes:
+  mc-data:
