@@ -10,7 +10,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /server \
- && chmod +x /app/scripts/entrypoint.sh
+ && chmod +x /app/scripts/entrypoint.sh 
 
 EXPOSE 25565
 

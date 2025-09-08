@@ -14,7 +14,7 @@ services:
     ports:
       - "8888:25565"   # extern 8888, intern 25565
     volumes:
-      - ./mc-data:/server
+      - ${HOME}/mc-data:/server
     restart: unless-stopped
 
 volumes:
