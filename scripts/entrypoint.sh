@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-cd /server
+SERVER_DIR="${SERVER_DIR:-/server}"
+mkdir -p "$SERVER_DIR"
+cd "$SERVER_DIR"
 
-#1) Accept EULA licence
-echo "eula=true"  > eula.txt
+# set EULA 
+EULA_VAL="${EULA:-true}"
+printf "eula=%s\n" "${EULA_VAL,,}" > eula.txt
 
-#2) memory configuration
-XMS_VALUE=${XMS:-1G}
-XMX_VALUE=${XMX:-2G}
+# RAM-Defaults
+XMS_VALUE="${XMS:-1G}"
+XMX_VALUE="${XMX:-2G}"
 
 
-#3) start the java server
 exec java -Xms"$XMS_VALUE" -Xmx"$XMX_VALUE" ${JVM_OPTS:-} -jar server.jar nogui
-
